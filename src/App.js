@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import NewNote from './components/NewNote';
 
@@ -10,6 +10,14 @@ function App() {
     notesTemp.push(note);
     setNotes(notesTemp);
   }
+
+  useEffect(() => {
+    console.log(notes);
+    localStorage.setItem(
+      'notes',
+      JSON.stringify(notes)
+    )
+  })
 
   return (
     <div className="App">
