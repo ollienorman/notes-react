@@ -7,12 +7,12 @@ class NewNote extends React.Component {
 
   createNote = (event) => {
     event.preventDefault();
-    console.log(this);
     const note = {
       title: this.titleRef.current.value,
-      body: this.bodyRef.current.value
+      body: this.bodyRef.current.value,
+      id: Date.now()
     }
-    console.log(note);
+    this.props.addNote(note);
   }
 
   render() {
