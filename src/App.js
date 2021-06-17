@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import './App.css';
 import NewNote from './components/NewNote';
 
 function App() {
+
   return (
     <div className="App">
       <NewNote/>
