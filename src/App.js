@@ -4,7 +4,7 @@ import NewNote from './components/NewNote';
 import AllNotes from './components/AllNotes';
 
 function App() {
-  const [notes, setNotes] = useState([{title: 'test title', body: 'test body'}])
+  const [notes, setNotes] = useState([])
 
   const addNote = (note) => {
     const notesTemp = [ ...notes ];
@@ -13,7 +13,15 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(notes);
+    console.log('in localStorage useEffect');
+    const localStorageRef = localStorage.getItem('notes')
+    console.log(localStorageRef);
+    if (localStorageRef) {
+      setNotes(JSON.parse(localStorageRef))
+    }
+  }, [])
+
+  useEffect(() => {
     localStorage.setItem(
       'notes',
       JSON.stringify(notes)
@@ -23,7 +31,7 @@ function App() {
   return (
     <div className="App">
       <NewNote addNote={addNote}/>
-      <AllNotes />
+      <AllNotes notes={notes}/>
     </div>
   );
 }
