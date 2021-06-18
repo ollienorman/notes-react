@@ -1,30 +1,35 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class NewNote extends React.Component {
+function NewNote(props) {
+  const { addNote } = props;
 
-  titleRef = React.createRef();
-  bodyRef = React.createRef();
+  const titleRef = React.createRef();
 
-  createNote = (event) => {
+  const bodyRef = React.createRef();
+
+  const createNote = (event) => {
     event.preventDefault();
     const note = {
-      title: this.titleRef.current.value,
-      body: this.bodyRef.current.value,
-      id: Date.now()
-    }
-    this.props.addNote(note);
+      title: titleRef.current.value,
+      body: bodyRef.current.value,
+      id: Date.now(),
+    };
+    addNote(note);
     event.currentTarget.reset();
-  }
+  };
 
-  render() {
-    return (
-      <form className="new-note" onSubmit={this.createNote}>
-        <input type="text" name="title" ref={this.titleRef} placeholder="Title"/>
-        <input type="text" name="body" ref={this.bodyRef} placeholder="Note"/>
-        <button type="submit">+ Add Note</button>
-      </form>
-  )
-  }
+  return (
+    <form className="new-note" onSubmit={createNote}>
+      <input type="text" name="title" ref={titleRef} placeholder="Title" />
+      <input type="text" name="body" ref={bodyRef} placeholder="Note" />
+      <button type="submit">+ Add Note</button>
+    </form>
+  );
 }
 
-export default NewNote
+NewNote.propTypes = {
+  addNote: PropTypes.func.isRequired,
+};
+
+export default NewNote;
