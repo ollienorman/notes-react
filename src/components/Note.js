@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react'
+import React from 'react'
 
 // sort notes by ID (timestamp)
 
@@ -7,6 +7,7 @@ function Note(props) {
     <div>
       {props.title}
       {props.body}
+      <button type="button" onClick={() => (props.deleteNote(props.id))}>&times; Delete Note</button>
     </div>
   )
 }

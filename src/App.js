@@ -12,10 +12,12 @@ function App() {
     setNotes(notesTemp);
   }
 
+  const deleteNote = (note) => {
+    console.log(note);
+  }
+
   useEffect(() => {
-    console.log('in localStorage useEffect');
     const localStorageRef = localStorage.getItem('notes')
-    console.log(localStorageRef);
     if (localStorageRef) {
       setNotes(JSON.parse(localStorageRef))
     }
@@ -31,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <NewNote addNote={addNote}/>
-      <AllNotes notes={notes}/>
+      <AllNotes notes={notes} deleteNote={deleteNote}/>
     </div>
   );
 }
