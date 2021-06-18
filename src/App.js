@@ -12,8 +12,12 @@ function App() {
     setNotes(notesTemp);
   }
 
-  const deleteNote = (note) => {
-    console.log(note);
+  const deleteNote = (noteId) => {
+    const noteToDelete = notes.find(note => note.id === noteId)
+    const index = notes.indexOf(noteToDelete)
+    const notesTemp = [ ...notes ];
+    notesTemp.splice(index, 1)
+    setNotes(notesTemp);
   }
 
   useEffect(() => {
