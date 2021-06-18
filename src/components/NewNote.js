@@ -13,6 +13,7 @@ class NewNote extends React.Component {
       id: Date.now()
     }
     this.props.addNote(note);
+    event.currentTarget.reset();
   }
 
   render() {
